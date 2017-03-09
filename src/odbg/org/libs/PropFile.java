@@ -9,7 +9,7 @@ import java.util.Properties;
  * 
  * @author orlando
  *	
- *	@version 1.1
+ *	@version 1.2
  */
 
 public class PropFile {
@@ -18,7 +18,10 @@ public class PropFile {
 		FileInputStream propFile = null;
 		Properties prop = null;
 		try {
-			propFile = new FileInputStream(url + ".properties");
+			StringBuilder str = new StringBuilder();
+			str.append(url).append(".properties");
+			
+			propFile = new FileInputStream(str.toString());
 			prop = new Properties();
 			prop.load(propFile);
 			propFile.close();

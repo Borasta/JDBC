@@ -6,7 +6,7 @@ import java.util.Properties;
 /**
  * 
  * @author Orlando Bohorquez
- * @version Version 2.6
+ * @version Version 2.7
  *	
  *	<p>
  *		Clase JDBC es util cuando se necesiten hacer conexiones
@@ -204,10 +204,18 @@ public class JDBC {
     }
     
     private String getConnString() {
-    	return "jdbc:" + this.dataSource.getProperty("jdbc") + 
-    			"://" + this.dataSource.getProperty("host") + 
-    			":" + this.dataSource.getProperty("port") + 
-    			"/" + this.dataSource.getProperty("db");
+    	StringBuilder connString = new StringBuilder();
+    	connString
+    		.append("jdbc:")
+    		.append(this.dataSource.getProperty("jdbc"))
+    		.append("://")
+    		.append(this.dataSource.getProperty("host"))
+    		.append(":")
+    		.append(this.dataSource.getProperty("port"))
+    		.append("/")
+    		.append(this.dataSource.getProperty("db"));
+    	
+    	return connString.toString();
     }
 
     private PreparedStatement setValues( String query, Object... values ) {
